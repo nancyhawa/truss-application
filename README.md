@@ -1,3 +1,7 @@
+# Welcome
+
+Thanks for taking the time to look at this tool! I enjoyed working through this problem, and I'm excited to chat about it with your team.
+
 # Environment
 
 If you are working on a modern mac, this tool should work out of the box.
