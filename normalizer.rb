@@ -4,7 +4,7 @@ require 'date'
 
 class Normalizer
 
-	def initialize(input) 
+	def initialize(input)
 		@input = input
 	end
 
@@ -21,13 +21,13 @@ class Normalizer
 
 		# Create a header row for the output file
 		output << [
-			"Timestamp", 
-			"Address", 
-			"ZIP", 
-			"FullName", 
-			"FooDuration", 
-			"BarDuration", 
-			"TotalDuration", 
+			"Timestamp",
+			"Address",
+			"ZIP",
+			"FullName",
+			"FooDuration",
+			"BarDuration",
+			"TotalDuration",
 			"Notes"]
 
 		return CSV.generate do |csv|
@@ -35,12 +35,12 @@ class Normalizer
 				normalized_row = []
 
 =begin
-				Each of the methods called from lines 
+				Each of the methods called from lines
 				should work for the sample data provided, but given unexpected
 				data we want to fail gracefully.  Rescue with a warning
 				printed to STDERR and skip to next row.
 =end
-				begin 
+				begin
 					normalized_row << normalize_timestamp(row["Timestamp"])
 					normalized_row << normalized_address(row["Address"])
 					normalized_row << normalize_zip(row["ZIP"])
@@ -53,9 +53,9 @@ class Normalizer
 					normalized_row << total_duration
 					normalized_row << normalized_notes(row["Notes"])
 				rescue
-					STDERR.puts 
-						"Warning: Failed to parse row #{i + 1}.\n 
-						Row #{i + 1} dropped from #{@output_file_name}" 
+					STDERR.puts
+						"Warning: Failed to parse row #{i + 1}.\n
+						Row #{i + 1} dropped from #{@output_file_name}"
 					next
 				end
 				csv << normalized_row
@@ -88,8 +88,8 @@ class Normalizer
 
 	def parse_duration(duration_string)
 		components = duration_string.split(":")
-		hours = components[0].to_i 
-		minutes = components[1].to_i 
+		hours = components[0].to_i
+		minutes = components[1].to_i
 		seconds = components[2].to_f
 
 		(hours * 3600) + (minutes * 60) + seconds
@@ -103,4 +103,4 @@ class Normalizer
 end
 
 puts Normalizer.new($stdin.read).normalize
-
+#small change
